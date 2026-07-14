@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light mode */
+  --color-background: 250 250 251; /* #FAFAFB */
+  --color-surface: 255 255 255; /* #FFFFFF */
+  --color-surface-raised: 255 255 255;
+  --color-border: 226 229 233; /* #E2E5E9 */
+  --color-foreground: 17 20 24; /* #111418 */
+  --color-muted: 100 108 118; /* #646C76 */
+  --color-pulse: 217 122 12; /* #D97A0C amber, darker for light-mode contrast */
+  --color-pulse-muted: 245 166 35;
+  --color-accent: 59 105 209; /* #3B69D1 */
+  --color-success: 22 163 74;
+  --color-danger: 220 38 38;
+}
+
+.dark {
+  /* Dark mode — "developer console" */
+  --color-background: 11 14 20; /* #0B0E14 */
+  --color-surface: 21 26 35; /* #151A23 */
+  --color-surface-raised: 27 33 44; /* #1B212C */
+  --color-border: 39 46 58; /* #272E3A */
+  --color-foreground: 230 232 235; /* #E6E8EB */
+  --color-muted: 138 147 160; /* #8A93A0 */
+  --color-pulse: 245 166 35; /* #F5A623 amber accent */
+  --color-pulse-muted: 217 122 12;
+  --color-accent: 91 141 239; /* #5B8DEF */
+  --color-success: 74 222 128;
+  --color-danger: 248 113 113;
+}
+
+* {
+  border-color: rgb(var(--color-border));
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  font-family: var(--font-body), sans-serif;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Visible keyboard focus everywhere — accessibility floor */
+:focus-visible {
+  outline: 2px solid rgb(var(--color-pulse));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Thin scrollbar to match the console aesthetic */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--color-border));
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(var(--color-muted));
+}
+
+/* Utility: numeric/stat display */
+.stat-figure {
+  font-family: var(--font-mono), monospace;
+  font-variant-numeric: tabular-nums;
+}
